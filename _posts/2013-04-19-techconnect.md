@@ -1,3 +1,8 @@
+---
+layout: post
+title: Example content
+---
+
 This week there has been quite a lot of activity in Brisbane around the startup scene. On Monday we had a fireside chat with [Tyler Crowley](https://twitter.com/steepdecline) hosted by Silicon Beach Brisbane and on Tuesday there was the TechConnect 2013 conference. I attended both of these events and these are my thoughts from what I heard.
 On Monday night the Silicon Beach Brisbane meetup group with Brisbane Marketing hosted an informal chat with Tyler Crowley. Tyler commented on his experiences building up the startup scene in LA in Santa Monica, making references to tips on how he did it there and what we can do in Brisbane to apply his strategy to grow our scene. From my notes these are some of the main take aways that stuck with me:
 
