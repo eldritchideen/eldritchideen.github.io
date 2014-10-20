@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Example content
+title: Techconnect 2013 in Brisbane
 ---
 
 This week there has been quite a lot of activity in Brisbane around the startup scene. On Monday we had a fireside chat with [Tyler Crowley](https://twitter.com/steepdecline) hosted by Silicon Beach Brisbane and on Tuesday there was the TechConnect 2013 conference. I attended both of these events and these are my thoughts from what I heard.
