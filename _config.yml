@@ -9,7 +9,7 @@ relative_permalinks: true
 # Setup
 title:            'Strange Ideas'
 tagline:          'My musings'
-description:      'Fill in Later'
+description:      'My musings'
 url:              http://www.eldritchideen.com
 baseurl:          /
 
