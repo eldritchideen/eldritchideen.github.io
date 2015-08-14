@@ -40,7 +40,7 @@ defmodule Chain do
 end
 {% endhighlight %}
 
-This run in about 5s on my Macbook Pro for 1,000,000 processes. 
+This run in about 8-9sec on my Macbook Pro for 1,000,000 processes. 
 
 I was interested in how this would work in Clojure using core.async. I came up with the following code that I think closely follows the intent of the Elixir code. 
 
@@ -65,7 +65,7 @@ I was interested in how this would work in Clojure using core.async. I came up w
 
 (defn run []
     (let [start (. System currentTimeMillis)
-          _   (run-it 1000000)
+          _     (run-it 1000000)
           end   (. System currentTimeMillis)]
     (println "Ran in" (- end start) "ms")))
 
@@ -73,7 +73,7 @@ I was interested in how this would work in Clojure using core.async. I came up w
   (run))
 {% endhighlight %}
 
-I was very impressed that this took about the same time as the Elixir code. The non-blocking nature of Clojure's core.async go blocks are impressive. This also seemed to take about the same amount of memory as the Elixir version. 
+I was very impressed that this took about the same time as the Elixir code, after a few runs to allow the Hotspot optimisations to kick in. The non-blocking nature of Clojure's core.async go blocks are impressive. This also seemed to take about the same amount of memory as the Elixir version. 
 
 Lastly I thought I would have a try at doing this in Go, as core.async follows a similar CSP model as Go. I'm not very familar with Go, but quickly came up with the following:
 
@@ -91,23 +91,23 @@ func inc(in chan int, out chan int) {
 
 func main() {
   start := time.Now()
-	const n = 1000000
+  const n = 1000000
   var chans [n]chan int
-	for i := 0; i < n; i++ {
-		chans[i] = make(chan int)
-	}
+  for i := 0; i < n; i++ {
+    chans[i] = make(chan int)
+  }
 
-	for i:= 1; i < n; i++ {
+  for i:= 1; i < n; i++ {
     go inc(chans[i-1], chans[i])
   }
 
   chans[0] <- 1
-
   result := <- chans[n-1]
   end := time.Now()
   fmt.Println("Result is ", result, " and it took ", end.Sub(start))
 }
 {% endhighlight %}
 
-It seems that creating one million channels in Go is very expensive with memory. The exe on startup allocates about 6 Gig of RAM and I ended up killing it before getting a result after waiting several minutes. 
+Using Go 1.4 the compiled binary executes this in about 2.3sec. I am very surprised with this, how fast Go is compared with the others. It seems to use about the same memory too as the Elixir version. About 2 Gig. If only I prefer the more functional style of Elixir/Clojure. Go still allows shared mutable state issues without care, though worth investigating a bit more given these results. 
 
+Disclaimer: Take micro benchmarks with a grain of salt. 
