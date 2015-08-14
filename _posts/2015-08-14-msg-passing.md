@@ -6,10 +6,8 @@ title: Message Passing in Elixir, Clojure and Go
 I have spent some time recently learning Elixir. I have always been interested in Erlang, but the syntax has put me off in the past. One of the examples in the book Programming Elixir involves creating 1,000,000 processes and sending and incrementing an integer through the chain. The Elixir code is:
 
 {% highlight elixir %}
-#---
 # Excerpted from "Programming Elixir",
 # published by The Pragmatic Bookshelf.
-#---
 defmodule Chain do
   def counter(next_pid) do    
     receive do
