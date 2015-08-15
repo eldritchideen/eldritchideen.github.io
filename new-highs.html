@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Tracking Stocks Making New Highs - Strange Ideas</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/new-highs.html">
+
+        <meta name="author" content="Steven Cook" />
+        <meta name="keywords" content="Clojure" />
+        <meta name="description" content="Outlines my Clojure project that tracks stocks that are making new yearly highs." />
+
+        <meta property="og:site_name" content="Strange Ideas" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Tracking Stocks Making New Highs"/>
+        <meta property="og:url" content="/new-highs.html"/>
+        <meta property="og:description" content="Outlines my Clojure project that tracks stocks that are making new yearly highs."/>
+        <meta property="article:published_time" content="2014-11-23" />
+            <meta property="article:section" content="programming" />
+            <meta property="article:tag" content="Clojure" />
+            <meta property="article:author" content="Steven Cook" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Strange Ideas            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li class="active">
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/new-highs.html"
+                       rel="bookmark"
+                       title="Permalink to Tracking Stocks Making New Highs">
+                        Tracking Stocks Making New Highs
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-23T00:00:00+10:00"> Sun 23 November 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/clojure.html">Clojure</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>One of the better books that I have read on investing in the stock market especially from an Australian point of view, is Colin Nicholson's <a href="http://www.bwts.com.au/index.cfm/colins-books/building-wealth-in-the-stock-market/">Building Wealth Through Shares</a>.</p>
+<p><img align="left" style="margin: 0px 10px" src="http://www.bwts.com.au/index.cfm/image/10-building-wealth-in-the-stock-market.jpg"/></p>
+<p>One of the central ideas to look for stocks that are starting to trend, Colin outlines that a good way to find these stocks is to look for those that are making new 52 week highs in price.</p>
+<p>There are a few freely accessible locations to find this information.</p>
+<ul>
+<li>Australain Finacial Review <a href="http://www.afr.com/share_tables/">share tables</a> which are published daily in the evening.</li>
+<li>Sydney Morning Herald's Markets <a href="http://www.smh.com.au/business/markets/52-week-highs">site</a>. This site has the advantage that new highs are updated throughout the day as trading occurs.</li>
+</ul>
+<p>Now I only like to review this data once a week, typically on the weekend when I have some spare time to review the market action. My life is too busy to be worrying about trading decisions during the week. I was always wanting a way to get a weekly view of this daily information to enable me to narrow down the list of stocks to look at more quickly on the weekend. I especially was interested in stocks that were making several new highs during the week, this can indicate that a strong new trend is starting to take off.</p>
+<p>I have previously manually tracked this information over the week. However I always felt this was a bit wrong, and given my ability to write code, I figured this should be an easy task to automate. I also wanted to use this to try out Clojure, which I have been experimenting with for some time now this year, yet never had a little product to do, until now.</p>
+<p>I have been very happy with the experience of using Clojure to code up a little utility called <a href="https://github.com/eldritchideen/new-highs">New Highs</a> that scrapes the data off the Sydney Morning Herald site and aggregates how many highs a stock has made throughout the week.</p>
+<p>The ability to code a bit and then test things out in the REPL lead to very fast development. Whenever I found myself looking at using loop/recur I managed to rewrite it in terms of map or reduce. In the end there is no state, the structure of the application is that it reads data from disk and web, then transforms it though a series of functions until it writes the results back to disk and screen. Elegant code like this can be achieved very easily using the built in Clojure functions.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="kd">defn </span><span class="nv">number-of-highs</span>
+  <span class="s">&quot;Takes a list of stock codes. Returns a seq of [stock-code count] in order of count&quot;</span>
+  <span class="p">[</span><span class="nv">shares</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">sort-by last </span><span class="p">(</span><span class="nf">frequencies</span> <span class="nv">shares</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table>
+
+<p>I have been very please with my experiences in Clojure from this little task. The code was fast to write and very compact. Using the <a href="https://cursiveclojure.com/">Cursive</a> plugin for IntelliJ was great too.</p>
+<p>Once I finished reading the book, Web Development With Clojure I think I will put a simple web UI on the data that my New High app is creating. Also I'm implementing a weekly trading algorithm based on one of Nick Radge's books. More on that when I get the code up on Github.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://twitter.com/eldritchideen"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="https://github.com/eldritchideen"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://au.linkedin.com/in/stevejcook1"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Steven Cook
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

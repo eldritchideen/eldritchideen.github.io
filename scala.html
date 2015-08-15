@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>The Future is Scala? - Strange Ideas</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/scala.html">
+
+        <meta name="author" content="Steven Cook" />
+        <meta name="keywords" content="Scala" />
+        <meta name="description" content="I&#39;ve been really busy recently hence the lack of posting. I have been doing the Coursera Scala programming course. Along side a few other Scala related things. I have also been reading through the great book Scala for the Impatient, I highly recommend this book as the best introduction ..." />
+
+        <meta property="og:site_name" content="Strange Ideas" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="The Future is Scala?"/>
+        <meta property="og:url" content="/scala.html"/>
+        <meta property="og:description" content="I&#39;ve been really busy recently hence the lack of posting. I have been doing the Coursera Scala programming course. Along side a few other Scala related things. I have also been reading through the great book Scala for the Impatient, I highly recommend this book as the best introduction ..."/>
+        <meta property="article:published_time" content="2013-11-11" />
+            <meta property="article:section" content="misc" />
+            <meta property="article:tag" content="Scala" />
+            <meta property="article:author" content="Steven Cook" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.flatly.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Strange Ideas            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="/category/programming.html">Programming</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/scala.html"
+                       rel="bookmark"
+                       title="Permalink to The Future is Scala?">
+                        The Future is Scala?
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-11-11T00:00:00+10:00"> Mon 11 November 2013</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/scala.html">Scala</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>I've been really busy recently hence the lack of posting. I have been doing the Coursera Scala programming course. Along side a few other Scala related things. I have also been reading through the great book Scala for the Impatient, I highly recommend this book as the best introduction to Scala out there at the moment.</p>
+<p>Scala really interests me, though it has more to do with the fact that I really want to believe that there is a better way to construct software that doesn't involve threads and mutable state. The combination of threads and mutable state, has been killing me on the product that I work on in my day job. This Java application was written in the late 90's and early 2000's, when the solution to everything seemed to be add more classes and threads. Oh, it didn't work, add more syncronized decorators to methods! This has lead over the years to code that is incredibly hard to debug, test and reason about how it will perform in production.</p>
+<p>Enter Scala, it promises to solve all these problems and still run on the JVM and be able to leverage our existing code base.</p>
+<p>So far I have been impressed, though the size and complexity of the language reminds me of the early days of C++. I think to deploy Scala into a large enterprise team, you would need some strict coding guidelines and pick the parts of the language that the team will stick with.</p>
+<p>Thought some of the presentations that were given at the ScalaDays conference this year were worth watching.</p>
+<p>http://www.parleys.com/channel/51ae1022e4b01033a7e4b6ca/presentations?sort=date&amp;state=public</p>
+<p>The three ones that I found interesting were:</p>
+<ol>
+<li>Going Reactive: Scalable, Highly Concurrent &amp; Fault­Tolerant Systems by Jonas Bonér</li>
+<li>Concurrency – The good, the bad, the ugly by Viktor Klang &amp; Roland Kuhn</li>
+<li>Keynote ­ Scala in 2018 by Rod Johnson</li>
+</ol>
+<p>I thought that 1 &amp; 2 were very interesting, talking about the Scala/Akka approach to concurrency and scalability.</p>
+<p>One that impressed me greatly was Rod Johnson's keynote. I really believe that for Scala to crack the popularity contest, it needs to focus on getting more adoption before Java 8 with its Lambda support arrives on the scene. I would like to see the following improved in Scala:</p>
+<ul>
+<li>Market it as a better, more concise Java to start with. Like C++ was used coming from C in the early days. Don't start with trying to be a Haskell running on the JVM, like some supporters of the language go with to start. Once people start using it, then introduce more functional style of doing things.</li>
+<li>SBT is terrible. Clojure's lein tool is much nicer. This needs to be fixed for wider Scala adoption.</li>
+<li>The Scala docs are rather hard to navigate. You never know if what you are looking for is in the class, object, package object, some implicit class, etc... Can take a while to track done a function you are after.</li>
+</ul>
+<p>That being said, I really believe something like Scala and its Actor support is the way forward.</p>
+<p>I have been working through the Play book and am really impressed so far with the framework. Though I think it needs a better database access story.
+Once I am finished with the Play book, I'm going to go through Web Development With Clojure. As Clojure really interests me too, with its slightly different take on concurency.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://twitter.com/eldritchideen"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="https://github.com/eldritchideen"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://au.linkedin.com/in/stevejcook1"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Steven Cook
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>
