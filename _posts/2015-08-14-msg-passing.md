@@ -5,29 +5,29 @@ title: Message Passing in Elixir, Clojure and Go
 
 I have spent some time recently learning Elixir. I have always been interested in Erlang, but the syntax has put me off in the past. One of the examples in the book Programming Elixir involves creating 1,000,000 processes and sending and incrementing an integer through the chain. The Elixir code is:
 
-{% highlight elixir %}
+``` elixir
 # Excerpted from "Programming Elixir",
 # published by The Pragmatic Bookshelf.
 defmodule Chain do
   def counter(next_pid) do    
     receive do
-      n -> 
+      n ->
         send next_pid, n + 1
     end
   end
 
   def create_processes(n) do
-    last = Enum.reduce 1..n, self, 
-             fn (_,send_to) -> 
-               spawn(Chain, :counter, [send_to]) 
-             end 
+    last = Enum.reduce 1..n, self,
+             fn (_,send_to) ->
+               spawn(Chain, :counter, [send_to])
+             end
 
     # start the count by sending
     send last, 0
 
     # and wait for the result to come back to us
     receive do
-      final_answer when is_integer(final_answer) -> 
+      final_answer when is_integer(final_answer) ->
         "Result is #{inspect(final_answer)}"
     end
   end
@@ -36,13 +36,13 @@ defmodule Chain do
     IO.puts inspect :timer.tc(Chain, :create_processes, [n])
   end
 end
-{% endhighlight %}
+```
 
-This run in about 8-9sec on my Macbook Pro for 1,000,000 processes. 
+This run in about 8-9sec on my Macbook Pro for 1,000,000 processes.
 
-I was interested in how this would work in Clojure using core.async. I came up with the following code that I think closely follows the intent of the Elixir code. 
+I was interested in how this would work in Clojure using core.async. I came up with the following code that I think closely follows the intent of the Elixir code.
 
-{% highlight clojure %}
+``` clojure
 (ns scratch.core
 (:require [clojure.core.async :as async :refer [go <! chan >!! <!! >!]])
 (:gen-class))
@@ -69,13 +69,13 @@ I was interested in how this would work in Clojure using core.async. I came up w
 
 (defn -main [& args]
   (run))
-{% endhighlight %}
+```
 
-I was very impressed that this took about the same time as the Elixir code, after a few runs to allow the Hotspot optimisations to kick in. The non-blocking nature of Clojure's core.async go blocks are impressive. This also seemed to take about the same amount of memory as the Elixir version. 
+I was very impressed that this took about the same time as the Elixir code, after a few runs to allow the Hotspot optimisations to kick in. The non-blocking nature of Clojure's core.async go blocks are impressive. This also seemed to take about the same amount of memory as the Elixir version.
 
 Lastly I thought I would have a try at doing this in Go, as core.async follows a similar CSP model as Go. I'm not very familar with Go, but quickly came up with the following:
 
-{% highlight go %}
+``` go
 package main
 
 import "fmt"
@@ -104,8 +104,8 @@ func main() {
   end := time.Now()
   fmt.Println("Result is ", result, " and it took ", end.Sub(start))
 }
-{% endhighlight %}
+```
 
-Using Go 1.4 the compiled binary executes this in about 2.3sec. I am very surprised with this, how fast Go is compared with the others. It seems to use about the same memory too as the Elixir version. About 2 Gig. If only I prefer the more functional style of Elixir/Clojure. Go still allows shared mutable state issues without care, though worth investigating a bit more given these results. 
+Using Go 1.4 the compiled binary executes this in about 2.3sec. I am very surprised with this, how fast Go is compared with the others. It seems to use about the same memory too as the Elixir version. About 2 Gig. If only I prefer the more functional style of Elixir/Clojure. Go still allows shared mutable state issues without care, though worth investigating a bit more given these results.
 
-Disclaimer: Take micro benchmarks with a grain of salt. 
+Disclaimer: Take micro benchmarks with a grain of salt.
